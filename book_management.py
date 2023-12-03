@@ -1,0 +1,55 @@
+import csv
+from datetime import datetime
+class Idgenerator:
+    id = 0
+    @classmethod
+    def get_next_id(cls):
+        with open('book_id.log', 'r') as file:
+            for f in file:
+                cls.id = int(f)
+        cls.id += 1
+        with open('book_id.log', 'w') as file:
+                  file.write(str(cls.id))
+        return cls.id
+
+print(Idgenerator.get_next_id())
+class BookManagement:  
+    
+    def add_books(self):
+        try:
+            book_id = Idgenerator.get_next_id()
+            book_name = input('Book Name: ')
+            author_name = input('Author Name: ')
+            genre = input('Book Genre: ')
+            try:
+                quantity = int(input('Quantity: '))
+            except:
+                print('Quantity must be an Integer value!!')
+
+            time_of_adding = datetime.now()
+            
+            try:
+                with open('book_inventory.csv', 'r', newline='') as file: 
+                    reader = csv.reader(file)
+                    data = list(reader)
+                    if data:
+                        found = False
+                        for book in data:
+                            if book[1] == book_name:
+                                book[4] += quantity
+                                found = True
+                                break   
+            except Exception as e:
+                print(e)
+            try:
+                with open('book_inventory.csv', 'a', newline='') as file:
+                    writer = csv.writer(file)
+                    writer.writerow([book_id, book_name, author_name,  genre, quantity, time_of_adding])
+            except Exception as e:
+                print(e)
+        except Exception as e:
+            print(e)
+    
+    
+b = BookManagement()
+b.add_books()
