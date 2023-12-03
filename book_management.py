@@ -12,7 +12,6 @@ class Idgenerator:
                   file.write(str(cls.id))
         return cls.id
 
-print(Idgenerator.get_next_id())
 class BookManagement:  
     
     def add_books(self):
@@ -50,6 +49,23 @@ class BookManagement:
         except Exception as e:
             print(e)
     
+    def show_books(self):
+        try:
+            with open('book_inventory.csv', 'r', newline='') as file:
+                reader = csv.reader(file)
+                books = list(reader)
+                if books:
+                    for book in books:
+                        print(f"""
+                        Book Id: {book[0]}
+                        Book Name: {book[1]}
+                        Author Name: {book[2]}
+                        Genre: {book[3]}
+                        Quantity: {book[4]}
+                        Time of adding: {book[5]}
+                        **********************************************
+                        """)
+        except Exception as e:
+            print(e)
     
 b = BookManagement()
-b.add_books()
