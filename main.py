@@ -1,8 +1,9 @@
 from book_management import BookManagement
 from user_management import User
 from borrow_book import BorrowBook
+from return_management import ReturnBook
 
-class LMS(BookManagement,User,BorrowBook):
+class LMS(BookManagement,User,BorrowBook,ReturnBook):
     def __init__(self):
         print(f"{'Library Management System':#^100}")
 lms=LMS()

@@ -67,6 +67,3 @@ class BookManagement:
                         """)
         except Exception as e:
             print(e)
-
-b = BookManagement()
-b.add_books()
