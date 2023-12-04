@@ -24,8 +24,6 @@ class BookManagement:
                 quantity = int(input('Quantity: '))
             except:
                 print('Quantity must be an Integer value!!')
-
-            time_of_adding = datetime.now()
             
             try:
                 with open('book_inventory.csv', 'r', newline='') as file: 
@@ -43,7 +41,7 @@ class BookManagement:
             try:
                 with open('book_inventory.csv', 'a', newline='') as file:
                     writer = csv.writer(file)
-                    writer.writerow([book_id, book_name, author_name,  genre, quantity, time_of_adding])
+                    writer.writerow([book_id, book_name, author_name,  genre, quantity])
             except Exception as e:
                 print(e)
         except Exception as e:
@@ -62,7 +60,6 @@ class BookManagement:
                         Author Name: {book[2]}
                         Genre: {book[3]}
                         Quantity: {book[4]}
-                        Time of adding: {book[5]}
                         **********************************************
                         """)
         except Exception as e:
