@@ -36,3 +36,12 @@ class User:
                 writer=csv.writer(file)
                 writer.writerow([user_id,full_name,contact_no])
             print("User sucessfully Created")
+    def checkUser(self,user_id):
+        with open('user.csv','r') as file:
+            csvreader=csv.reader(file)
+            header=next(csvreader)
+            for r in csvreader:
+                if int(r[0])==user_id:
+                    return True
+                    break
+            return False
