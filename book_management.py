@@ -27,9 +27,9 @@ class BookManagement:
                 return
             
             try:
+                found = False
                 with open('book_inventory.csv', 'r', newline='') as file: 
                     reader = csv.reader(file)
-                    global data
                     data = list(reader)
                     if data:
                         found = False
@@ -40,7 +40,7 @@ class BookManagement:
                                 break   
             except Exception as e:
                 print(e)
-            if not data:
+            if not found:
                 try:
                     with open('book_inventory.csv', 'a', newline='') as file:
                         writer = csv.writer(file)
