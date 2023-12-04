@@ -1,10 +1,12 @@
 import csv
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, date
 from typing import Union
 
 
 class BorrowBook:
-    ROW_NAME = ['userID', 'bookID', 'borrowDateTime', 'dayCount']
+    ROW_NAME = ['userID', 'bookID', 'borrowDateTime']
+
+
 
     def borrow(self):
         while True:
@@ -17,11 +19,11 @@ class BorrowBook:
         while not self.borrow_exceed(member_id):
             book_id = int(input("Enter the book ID: "))
             if self.check_book_exists(book_id) and self.check_book_quantity(book_id):
-                borrowed_date_timestamp = datetime.now()
-                day_count = 0
-                data = [member_id, book_id, borrowed_date_timestamp, day_count]
+                borrowed_date_timestamp = datetime.now().date()
 
-                with open('borrowed_book.csv', 'a') as borrowed_file:
+                data = [member_id, book_id, borrowed_date_timestamp]
+
+                with open('borrowed_book.csv', 'a', newline='') as borrowed_file:
                     borrowed_writer = csv.writer(borrowed_file)
                     if borrowed_file.tell() == 0:
                         borrowed_writer.writerow(self.ROW_NAME)
@@ -47,7 +49,7 @@ class BorrowBook:
             for row in borrow_book_reader:
                 if row and row[0] == str(member_id):
                     count += 1
-                    if count > 3:
+                    if count == 3:
                         return True
                         break
 
