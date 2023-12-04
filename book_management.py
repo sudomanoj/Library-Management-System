@@ -67,16 +67,3 @@ class BookManagement:
                         """)
         except Exception as e:
             print(e)
-    def checkBook(self,book_id):
-        with open('book_inventory.csv', 'r', newline='') as file:
-                reader = csv.reader(file)
-                books = list(reader)
-                if books:
-                    for book in books:
-                        if int(book[0])==book_id:
-                            if int(book[4])>0:
-                                return True
-                    return False
-                else:
-                    return False
-b = BookManagement()

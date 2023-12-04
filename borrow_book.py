@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-from book_management import BookManagement
-from user_management import User
-class borrowBook(BookManagement):
-    def __init__(self):
-        print("Borrow Book")
-    def borrow(self):
-        borrow_book_id=int(input("enter id of book you want to borrow:"))
-        check_book=self.checkBook(borrow_book_id)
-        check_user_id=int(input("Enter user id to borrow book:"))
-        # check_user=pass
-borrowB=borrowBook()
-borrowB.borrow()
-=======
 import csv
 from datetime import datetime, timedelta
 from typing import Union
@@ -102,7 +88,3 @@ class BorrowBook:
             quantity = any((True for row in reader if int(row[4]) > 0))
             return quantity
 
-
-book = BorrowBook()
-book.borrow()
->>>>>>> 9d9a3e7f0d8fd68872b942d7deb29a7cadf69fd3

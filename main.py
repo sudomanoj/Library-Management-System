@@ -1,30 +1,26 @@
-import book_management
-import user_management
-import borrow_book
+from book_management import BookManagement
+from user_management import User
+from borrow_book import BorrowBook
 
+class LMS(BookManagement,User,BorrowBook):
+    def __init__(self):
+        print(f"{'Library Management System':#^100}")
+lms=LMS()
 def run():
     while True:
-        command:str = input('Enter command [add book, view books, check book, add user, check user]').lower().replace(' ', '')
+        command:str = input('Enter command [add book, view books, add user, check user,borrow]:').lower().replace(' ', '')
 
         match command:
             case 'addbook':
-                book_management.BookManagement.add_books()
-            
+                lms.add_books()      
             case 'viewbooks':
-                book_management.BookManagement.show_books()
-                
-            
-            case 'checkbook':
-                book_management.BookManagement.checkBook()
-            
+                lms.show_books() 
             case 'adduser':
-                user_management.User.addUser()
-            
-            case 'checkuser':
-                user_management.User.checkUser()
-                
+                lms.addUser()
+            case 'borrow':
+                lms.borrow()
             case 'exit':
-                break 
+                break
 
 if __name__ == '__main__':       
     run()
